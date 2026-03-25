@@ -31,7 +31,7 @@ URL_GIZI = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQk5Z47-GViLwEwBGDpO
 
 # Pemisahan kategori agar navigasi menu lebih cerdas (tidak hanya Tahu/Tempe)
 KATEGORI_PROT = {
-    'Ayam': 'Hewani', 'Telur': 'Hewani', 'Ikan Bandung': 'Hewani', 
+    'Ayam': 'Hewani', 'Telur': 'Hewani', 'Ikan Bandeng': 'Hewani', 
     'Ikan Kembung': 'Hewani', 'Ikan Tongkol': 'Hewani', 'Ikan Patin': 'Hewani', 
     'Ikan Nila': 'Hewani', 'Ikan Haruan': 'Hewani', 'Tahu': 'Nabati', 'Tempe': 'Nabati'
 }
@@ -66,7 +66,7 @@ df_gizi = load_data(URL_GIZI)
 
 if df_harga is not None and df_gizi is not None:
     # Pre-processing Angka
-    kolom_angka = ['Ayam', 'Telur', 'Ikan Bandung', 'Ikan Kembung', 'Ikan Tongkol', 
+    kolom_angka = ['Ayam', 'Telur', 'Ikan Bandeng', 'Ikan Kembung', 'Ikan Tongkol', 
                    'Ikan Patin', 'Ikan Nila', 'Ikan Haruan', 'Tahu', 'Tempe']
     for col in kolom_angka:
         if col in df_harga.columns:
@@ -92,7 +92,7 @@ if df_harga is not None and df_gizi is not None:
 
     # --- BAGIAN 1: GRAFIK TREN HARGA ---
     st.subheader("📈 Tren Harga Pangan Strategis")
-    komoditas_trend = ['Ayam', 'Telur', 'Ikan Bandung', 'Ikan Kembung', 'Ikan Tongkol']
+    komoditas_trend = ['Ayam', 'Telur', 'Ikan Bandeng', 'Ikan Kembung', 'Ikan Tongkol']
     pilihan_grafik = st.multiselect("Pilih Komoditas:", options=komoditas_trend, default=['Ayam', 'Ikan Kembung'])
     
     if pilihan_grafik:
