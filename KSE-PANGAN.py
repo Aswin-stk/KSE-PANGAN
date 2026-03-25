@@ -100,15 +100,12 @@ if df_harga is not None and df_gizi is not None:
         st.line_chart(df_plot)
 
     st.write("---")
-
-    # --- BAGIAN 2: KALKULATOR & LOGIKA EWS ---
-    st.subheader("💰 Kalkulator Navigasi Gizi Cerdas")
-    budget_user = st.number_input("Masukkan Budget Belanja Lauk (Rp):", min_value=5000, value=25000, step=1000)
     
     # Deteksi Harga Terbaru & EWS
+    df_harga['Tanggal'] = pd.to_datetime(df_harga['Tanggal'])
     data_terbaru = df_harga.iloc[-1]
     harga_ayam_skrg = data_terbaru['Ayam']
-    rata_rata_ayam = df_harga['Ayam'].mean()
+    rata_rata_ayam = df_harga[df_harga['Tanggal'].dt.year == 2025]['Ayam'].mean()
     batas_aman = rata_rata_ayam * 1.10 # Threshold 10%
 
     if harga_ayam_skrg > batas_aman:
@@ -137,6 +134,11 @@ if df_harga is not None and df_gizi is not None:
         m1.metric("Harga Saat Ini", f"Rp {harga_ayam_skrg:,.0f}", f"+{kenaikan_persen:.1f}%", delta_color="inverse")
         m2.metric("Batas Aman (T)", f"Rp {batas_aman:,.0f}")
         m3.metric("Selisih Inflasi", f"Rp {selisih_harga:,.0f}", delta_color="inverse")
+        
+        # KALKULATOR & LOGIKA EWS ---
+        st.write("---")
+        st.subheader("💰 Kalkulator Navigasi Gizi Cerdas")
+        budget_user = st.number_input("Masukkan Budget Belanja Lauk (Rp):", min_value=5000, value=25000, step=1000)
 
     # Pengolahan List Rekomendasi
     list_hewani = []
