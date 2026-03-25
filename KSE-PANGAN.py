@@ -215,6 +215,7 @@ if df_harga is not None and df_gizi is not None:
                     st.image(item['gambar'], use_container_width=True)
                     st.write(f"**{item['ikon']} {item['nama']}**")
                     st.write(f"Protein: {item['protein']} gr")
+                    st.caption(f"Harga: Rp {item['harga']:,.0f}/kg")
         else:
             st.write("Semua opsi sudah ditampilkan.")
 
